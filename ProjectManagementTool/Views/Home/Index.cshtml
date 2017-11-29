@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<br/>
+<div>@if (TempData["message"] != null)
+     {
+         <div class="alert-warning" style="text-align: center"><h1>@TempData["message"]</h1></div>
+     }</div>
+<h1 style="text-align: center">3 tier architecture has been ignored due to lack of time</h1>
