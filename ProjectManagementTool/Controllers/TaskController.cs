@@ -19,7 +19,7 @@ namespace ProjectManagementTool.Controllers
         private HttpCookie cookie;
 
         private ProjectContext db = new ProjectContext();
-        private string userId, designation;
+        private string userId, designation,userName;
 
         public TaskController()
         {
@@ -27,6 +27,7 @@ namespace ProjectManagementTool.Controllers
             cookie = context.Request.Cookies["loginCookie"];
             if (cookie != null)
             {
+                userName = (cookie["UserName"]).ToString();
                 userId = (cookie["UserId"]).ToString();
                 designation = (cookie["Designation"]).ToString();
             }
@@ -35,15 +36,16 @@ namespace ProjectManagementTool.Controllers
         // GET: Task
         public ActionResult Index()
         {
-            if (userId != null)
+            if (userId != null && !designation.Equals("IT Manager"))
             {
 
-
+                ViewBag.AssignedBy = db.Users.ToList();
                 var tasks =
                     db.Tasks.Include(p => p.Priority)
                         .Include(p => p.Project)
                         .Include(p => p.User)
-                        .Where(a => a.UserId == userId);
+                        
+                        .Where(a => a.AssignedBy == userId || a.AssignTo==userId);
                 return View(tasks.ToList());
             }
             return RedirectToAction("Index", "Home");
@@ -80,7 +82,7 @@ namespace ProjectManagementTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ProjectId,UserId,Name,Description,DueDate,PriorityId")] ProjectTask projectTask)
+        public ActionResult Create([Bind(Include = "Id,ProjectId,AssignTo,Name,Description,DueDate,PriorityId")] ProjectTask projectTask)
         {
             projectTask.AssignedBy = userId;
             if (ModelState.IsValid)
@@ -111,7 +113,7 @@ namespace ProjectManagementTool.Controllers
             }
             ViewBag.PriorityId = new SelectList(db.Priorities, "Id", "Name", projectTask.PriorityId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", projectTask.ProjectId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Name", projectTask.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Name", projectTask.AssignTo);
             return View(projectTask);
         }
 
@@ -120,7 +122,7 @@ namespace ProjectManagementTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProjectId,UserId,Name,Description,DueDate,PriorityId")] ProjectTask projectTask)
+        public ActionResult Edit([Bind(Include = "Id,ProjectId,AssignTo,Name,Description,DueDate,PriorityId")] ProjectTask projectTask)
         {
             projectTask.AssignedBy = userId;
             if (ModelState.IsValid)
@@ -131,7 +133,7 @@ namespace ProjectManagementTool.Controllers
             }
             ViewBag.PriorityId = new SelectList(db.Priorities, "Id", "Name", projectTask.PriorityId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", projectTask.ProjectId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Name", projectTask.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Name", projectTask.AssignTo);
             return View(projectTask);
         }
 
@@ -163,7 +165,7 @@ namespace ProjectManagementTool.Controllers
 
         /*public ActionResult ViewProjects()
         {
-            /*var projectDetails = db.AssignResources.IncWhere(a => a.UserId == userId);
+            /*var projectDetails = db.AssignResources.IncWhere(a => a.AssignTo == userId);
             return View(projectDetails);#1#
         }*/
         protected override void Dispose(bool disposing)

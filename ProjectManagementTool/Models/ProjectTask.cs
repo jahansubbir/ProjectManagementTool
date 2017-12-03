@@ -15,7 +15,7 @@ namespace ProjectManagementTool.Models
 
         public string AssignedBy { get; set; }
         [DisplayName("Assign To")]
-        public string UserId { get; set; }
+        public string AssignTo { get; set; }
         [DisplayName("Task")]
         public string Name { get; set; }
 
@@ -28,7 +28,7 @@ namespace ProjectManagementTool.Models
         public Priority Priority { get; set; }
         [ForeignKey("ProjectId")]
         public Project Project { get; set; }
-        [ForeignKey("UserId")]
+        [ForeignKey("AssignTo")]
         public User User { get; set; }
 
     }

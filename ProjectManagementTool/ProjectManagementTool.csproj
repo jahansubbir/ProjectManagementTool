@@ -261,6 +261,10 @@
     <Compile Include="Migrations\201711291540586_ProjectManagementToolV15.Designer.cs">
       <DependentUpon>201711291540586_ProjectManagementToolV15.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712031914367_ProjectManagementToolV16.cs" />
+    <Compile Include="Migrations\201712031914367_ProjectManagementToolV16.Designer.cs">
+      <DependentUpon>201712031914367_ProjectManagementToolV16.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AssignResource.cs" />
@@ -516,6 +520,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711291540586_ProjectManagementToolV15.resx">
       <DependentUpon>201711291540586_ProjectManagementToolV15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712031914367_ProjectManagementToolV16.resx">
+      <DependentUpon>201712031914367_ProjectManagementToolV16.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

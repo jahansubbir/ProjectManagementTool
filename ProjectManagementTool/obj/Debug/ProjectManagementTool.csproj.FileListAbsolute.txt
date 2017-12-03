@@ -94,3 +94,4 @@ E:\DATA\Documents\Visual Studio 2015\Projects\ProjectManagementTool\ProjectManag
 E:\DATA\Documents\Visual Studio 2015\Projects\ProjectManagementTool\ProjectManagementTool\obj\Debug\ProjectManagementTool.dll
 E:\DATA\Documents\Visual Studio 2015\Projects\ProjectManagementTool\ProjectManagementTool\obj\Debug\ProjectManagementTool.pdb
 e:\data\documents\visual studio 2015\Projects\ProjectManagementTool\ProjectManagementTool\obj\Debug\ProjectManagementTool.Migrations.ProjectManagementToolV15.resources
+E:\DATA\Documents\Visual Studio 2015\Projects\ProjectManagementTool\ProjectManagementTool\obj\Debug\ProjectManagementTool.Migrations.ProjectManagementToolV16.resources

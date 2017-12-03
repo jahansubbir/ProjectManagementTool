@@ -1,7 +1,11 @@
-﻿@model IEnumerable<ProjectManagementTool.Models.ProjectTask>
+﻿@using ProjectManagementTool.Models
+@model IEnumerable<ProjectManagementTool.Models.ProjectTask>
 
 @{
     ViewBag.Title = "Index";
+
+    List<User> users = ViewBag.AssignedBy;
+
 }
 
 <h2>Index</h2>
@@ -18,8 +22,9 @@
             @Html.DisplayNameFor(model => model.Project.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.Name)
+            @Html.DisplayName("Assigned To")
         </th>
+        <th>@Html.DisplayName("Assigned By")</th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -43,6 +48,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.User.Name)
         </td>
+        <td>@users.Find(a=>a.Id==item.AssignedBy).Name</td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>

@@ -24,10 +24,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UserId, "Assign To", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AssignTo, "Assign To", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("UserId", null,"Select member", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.AssignTo, "", new { @class = "text-danger" })
             </div>
         </div>
 

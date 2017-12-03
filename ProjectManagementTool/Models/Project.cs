@@ -13,6 +13,7 @@ namespace ProjectManagementTool.Models
         public int Id { get; set; }
         [Column(TypeName = "varchar")]
         [MaxLength(150)]
+        [DisplayName("Project")]
         public string Name { get; set; }
         [DisplayName("Code Name")]
         [Column(TypeName = "varchar")]
