@@ -73,7 +73,7 @@ namespace ProjectManagementTool.Controllers
             ViewBag.PriorityId = new SelectList(db.Priorities, "Id", "Name");
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
             var adminDesignation = db.Designations.ToList().Find(a => a.Name.Equals("IT Admin"));
-            ViewBag.UserId = new SelectList(db.Users.ToList().Where(a=>a.DesignationId!=adminDesignation.Id), "Id", "Name");
+            ViewBag.UserId = new SelectList(db.Users.Where(a => !a.Designation.Name.Equals("IT Admin")), "Id", "Name");
             return View();
         }
 
@@ -95,7 +95,7 @@ namespace ProjectManagementTool.Controllers
             ViewBag.PriorityId = new SelectList(db.Priorities, "Id", "Name", projectTask.PriorityId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", projectTask.ProjectId);
             var adminDesignation = db.Designations.ToList().Find(a => a.Name.Equals("IT Admin"));
-            ViewBag.UserId = new SelectList(db.Users.ToList().Where(a => a.DesignationId != adminDesignation.Id), "Id", "Name",projectTask.User.DesignationId);
+            ViewBag.UserId = new SelectList(db.Users.Where(a => !a.Designation.Name.Equals("IT Admin")), "Id", "Name", projectTask.AssignTo);
             return View(projectTask);
         }
 
@@ -113,7 +113,7 @@ namespace ProjectManagementTool.Controllers
             }
             ViewBag.PriorityId = new SelectList(db.Priorities, "Id", "Name", projectTask.PriorityId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", projectTask.ProjectId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Name", projectTask.AssignTo);
+            ViewBag.UserId = new SelectList(db.Users.Where(a=>!a.Designation.Name.Equals("IT Admin")), "Id", "Name", projectTask.AssignTo);
             return View(projectTask);
         }
 
@@ -133,7 +133,7 @@ namespace ProjectManagementTool.Controllers
             }
             ViewBag.PriorityId = new SelectList(db.Priorities, "Id", "Name", projectTask.PriorityId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", projectTask.ProjectId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Name", projectTask.AssignTo);
+            ViewBag.UserId = new SelectList(db.Users.Where(a => !a.Designation.Name.Equals("IT Admin")), "Id", "Name", projectTask.AssignTo);
             return View(projectTask);
         }
 
