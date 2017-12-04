@@ -55,7 +55,7 @@ namespace ProjectManagementTool.Controllers
         {
             if (userId != null)
             {
-                var assignResources = db.AssignResources.Include(a => a.Project).Include(a => a.User).DistinctBy(a => a.ProjectId);
+                var assignResources = db.AssignResources.Include(a => a.Project).Include(a => a.User).DistinctBy(a => a.ProjectId).Where(a=>a.UserId==userId);
                 ViewBag.AssignResources = assignResources;
                 /* var assignedResources = from resources in db.AssignResources
                 join project in db.Projects on resources.ProjectId equals project.Id
