@@ -2,6 +2,8 @@
 @model IEnumerable<ProjectManagementTool.Models.AssignResource>
 
 @{
+    IEnumerable<AssignResource> memberCount = ViewBag.MembersCount;
+
     ViewBag.Title = "Index";
 }
 
@@ -16,10 +18,13 @@
             @Html.DisplayName("Project")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.Name)
+            @Html.DisplayNameFor(model => model.Project.CodeName)
         </th>
         <th>
-            @Html.DisplayName("Designation")
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("Total Members")
         </th>
         <th></th>
     </tr>
@@ -31,17 +36,19 @@
                 @Html.DisplayFor(modelItem => item.Project.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Name)
+                @Html.DisplayFor(modelItem => item.Project.CodeName)
             </td>
 
-            @foreach (Designation designation in ViewBag.Designations)
+            @foreach (ProjectStatus status in ViewBag.ProjectStatus)
             {
-                if (designation.Id == item.User.DesignationId)
+                if (status.Id == item.Project.ProjectStatusId)
                 {
-        <td>@designation.Name</td>
+        <td>@status.Status</td>
 
                 }
             }
+
+            <td>@memberCount.Count(a => a.ProjectId == item.ProjectId)</td>
 
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

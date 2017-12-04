@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using ProjectManagementTool.Context;
 using ProjectManagementTool.Models;
 
@@ -50,6 +51,28 @@ namespace ProjectManagementTool.Controllers
             return RedirectToAction("Login", "Home");
         }
 
+        public ActionResult ViewProjecInvolved()
+        {
+            if (userId != null)
+            {
+                var assignResources = db.AssignResources.Include(a => a.Project).Include(a => a.User).DistinctBy(a => a.ProjectId);
+                ViewBag.AssignResources = assignResources;
+                /* var assignedResources = from resources in db.AssignResources
+                join project in db.Projects on resources.ProjectId equals project.Id
+                join user in db.Users on resources.UserId equals user.Id
+                join designation in db.Designations on user.DesignationId equals designation.Id where 
+                select new {AssignResource = resources, User = user, Project = project, Designation = designation};*/
+                ViewBag.Designations = db.Designations.ToList();
+                ViewBag.Members = db.Users.ToList();
+
+                ViewBag.MembersCount = db.AssignResources.Include(a => a.Project).Include(a => a.User);
+                ViewBag.ProjectStatus = db.ProjectStatus.ToList();
+                return View(assignResources.ToList());
+            }
+            TempData["message"] = "please login to continue";
+            return RedirectToAction("Login", "Home");
+
+        }
         // GET: AssignResources/Details/5
         public ActionResult Details(int? id)
         {
@@ -88,9 +111,24 @@ namespace ProjectManagementTool.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.AssignResources.Add(assignResource);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (
+                    db.AssignResources.ToList()
+                        .Find(a => a.UserId == assignResource.UserId && a.ProjectId == assignResource.ProjectId) == null)
+                {
+
+
+                    db.AssignResources.Add(assignResource);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = "Your trying to assign member who is already assigned";
+                    ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", assignResource.ProjectId);
+                    ViewBag.UserId = new SelectList(db.Users.ToList().Where(a => a.DesignationId != itAdminDesignationId), "Id", "Name", assignResource.UserId);
+                    return View(assignResource);
+                }
+                
             }
 
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", assignResource.ProjectId);

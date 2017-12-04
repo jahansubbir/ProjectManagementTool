@@ -3,16 +3,18 @@
 @{
     ViewBag.Title = "Create";
 }
-
-<h2>Create</h2>
-
+<br/>
+@if (ViewBag.Message != null)
+{
+    <h2>@ViewBag.Message</h2>
+}
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>AssignResource</h4>
+        <h4>Assign Resource</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

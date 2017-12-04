@@ -176,5 +176,13 @@ namespace ProjectManagementTool.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult GetProjectDetails()
+        {
+            var assignedProject = db.AssignResources.Include(p=>p.Project).Include(u=>u.User).Where(a=>a.UserId==userId).ToList();
+            ViewBag.assignedProject = assignedProject;
+                
+            return View();
+        }
     }
 }
