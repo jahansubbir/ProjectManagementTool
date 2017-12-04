@@ -21,7 +21,7 @@ namespace ProjectManagementTool.Models
         [ForeignKey("ProjectId")]
         public Project Project { get; set; }
        // [ForeignKey("TaskId")]
-        //public ProjectTask ProjectTask { get; set; }
+       //public ProjectTask ProjectTask { get; set; }
 
     }
 }

@@ -265,6 +265,14 @@
     <Compile Include="Migrations\201712031914367_ProjectManagementToolV16.Designer.cs">
       <DependentUpon>201712031914367_ProjectManagementToolV16.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712040915437_ProjectManagementToolV17.cs" />
+    <Compile Include="Migrations\201712040915437_ProjectManagementToolV17.Designer.cs">
+      <DependentUpon>201712040915437_ProjectManagementToolV17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712040917129_ProjectManagementToolV18.cs" />
+    <Compile Include="Migrations\201712040917129_ProjectManagementToolV18.Designer.cs">
+      <DependentUpon>201712040917129_ProjectManagementToolV18.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AssignResource.cs" />
@@ -525,6 +533,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712031914367_ProjectManagementToolV16.resx">
       <DependentUpon>201712031914367_ProjectManagementToolV16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712040915437_ProjectManagementToolV17.resx">
+      <DependentUpon>201712040915437_ProjectManagementToolV17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712040917129_ProjectManagementToolV18.resx">
+      <DependentUpon>201712040917129_ProjectManagementToolV18.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

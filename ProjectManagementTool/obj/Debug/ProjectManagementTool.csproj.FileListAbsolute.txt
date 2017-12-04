@@ -192,3 +192,5 @@ D:\Subbir\Backup\ProjectManagement\ProjectManagementTool\obj\Debug\ProjectManage
 D:\Subbir\Backup\ProjectManagement\ProjectManagementTool\obj\Debug\ProjectManagementTool.csproj.GenerateResource.Cache
 D:\Subbir\Backup\ProjectManagement\ProjectManagementTool\obj\Debug\ProjectManagementTool.dll
 D:\Subbir\Backup\ProjectManagement\ProjectManagementTool\obj\Debug\ProjectManagementTool.pdb
+D:\Subbir\Backup\ProjectManagement\ProjectManagementTool\obj\Debug\ProjectManagementTool.Migrations.ProjectManagementToolV17.resources
+D:\Subbir\Backup\ProjectManagement\ProjectManagementTool\obj\Debug\ProjectManagementTool.Migrations.ProjectManagementToolV18.resources

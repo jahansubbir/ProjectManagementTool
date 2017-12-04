@@ -41,7 +41,9 @@ namespace ProjectManagementTool.Controllers
         // GET: Comments/Create
         public ActionResult Create()
         {
+            
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
+          //  ViewBag.TaskId=new SelectList(db.Tasks.Where(a=>a.ProjectId))
             return View();
         }
 
@@ -122,6 +124,11 @@ namespace ProjectManagementTool.Controllers
             return RedirectToAction("Index");
         }
 
+        public JsonResult GetTaskByProjectId(int projectId)
+        {
+            var task = db.Tasks.Where(a => a.ProjectId == projectId);
+            return Json(task, JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
